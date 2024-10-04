@@ -1,0 +1,125 @@
+/* 기본적인 레이아웃 */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* 로그인 컨테이너 */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* 로그인 카드 */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    width: 320px;
+}
+
+/* 사용자 아바타 이미지 */
+.login-avatar {
+    position: absolute;
+    top: -40px;
+    left: calc(50% - 40px);
+    background-color: #2d3e50;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.login-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d3e50;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 50px;
+}
+
+.input-group input {
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* 추가 옵션 (기억하기 및 비밀번호 찾기) */
+.extra-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.extra-options a {
+    color: #2d3e50;
+    text-decoration: none;
+}
+
+.extra-options a:hover {
+    text-decoration: underline;
+}
+
+/* 로그인 버튼 스타일 */
+.login-btn {
+    background-color: #2d3e50;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.login-btn:hover {
+    background-color: #1c2833;
+}
+
+/* 아이콘 스타일 (Font Awesome 사용) */
+.fa {
+    font-size: 16px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 600px) {
+    .login-card {
+        width: 90%;
+    }
+}

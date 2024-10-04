@@ -1,25 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ page import="java.sql.Connection, java.sql.DriverManager, java.sql.PreparedStatement, java.sql.ResultSet, java.sql.SQLException, java.sql.Timestamp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ê²Œì‹œë¬¼ ëª©ë¡</title>
-<link rel="stylesheet" href="css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>°Ô½Ã¹° ¸ñ·Ï</title>
 </head>
 <body>
-
-<jsp:include page="header.jsp" />
-
-<div class="container">
-    <h2>ê²Œì‹œë¬¼ ëª©ë¡</h2>
+    <h2>°Ô½Ã¹° ¸ñ·Ï</h2>
     <table border="1">
         <tr>
-            <th>ë²ˆí˜¸</th>
-            <th>ì œëª©</th>
-            <th>ìž‘ì„±ìž</th>
-            <th>ìž‘ì„±ì¼</th>
+            <th>¹øÈ£</th>
+            <th>Á¦¸ñ</th>
+            <th>ÀÛ¼ºÀÚ</th>
+            <th>ÀÛ¼ºÀÏ</th>
         </tr>
         <%
             Connection conn = null;
@@ -27,16 +22,18 @@
             ResultSet rs = null;
 
             try {
-                // ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²°
+                // Oracle JDBC µå¶óÀÌ¹ö ·Îµå
                 Class.forName("oracle.jdbc.driver.OracleDriver");
+
+                // µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
 
-                // ê²Œì‹œë¬¼ ëª©ë¡ ì¡°íšŒ ì¿¼ë¦¬
+                // °Ô½Ã¹° ¸ñ·Ï Á¶È¸ Äõ¸®
                 String query = "SELECT p.post_id, p.title, p.user_id, p.created_at FROM posts p ORDER BY p.created_at DESC";
                 pstmt = conn.prepareStatement(query);
                 rs = pstmt.executeQuery();
 
-                // ê²°ê³¼ ì¶œë ¥
+                // °á°ú Ãâ·Â
                 while (rs.next()) {
                     int postId = rs.getInt("post_id");
                     String title = rs.getString("title");
@@ -45,7 +42,7 @@
         %>
                     <tr>
                         <td><%= postId %></td>
-                        <td><a href="view_register.jsp?postId=<%= postId %>"><%= title %></a></td>
+                        <td><a href="view.jsp?postId=<%= postId %>"><%= title %></a></td>
                         <td><%= userId %></td>
                         <td><%= createdAt %></td>
                     </tr>
@@ -60,7 +57,5 @@
             }
         %>
     </table>
-</div>
-
 </body>
 </html>
