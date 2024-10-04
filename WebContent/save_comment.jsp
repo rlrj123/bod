@@ -28,11 +28,13 @@
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "1234");
 
             // 댓글 저장 쿼리
-            String query = "INSERT INTO comments (post_id, user_id, content, created_at) VALUES (?, ?, ?, SYSDATE)";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, postId);
-            pstmt.setString(2, userId);
-            pstmt.setString(3, commentContent);
+            // 댓글 저장 쿼리 (COMMENT_ID에 시퀀스 값을 삽입)
+			String query = "INSERT INTO comments (comment_id, post_id, user_id, content, created_at) VALUES (comment_seq.NEXTVAL, ?, ?, ?, SYSDATE)";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, postId);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, commentContent);
+
 
             int result = pstmt.executeUpdate();
 
@@ -43,8 +45,10 @@
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            out.println("<script>alert('댓글 작성 중 오류 발생: " + e.getMessage() + "'); history.back();</script>");
+            e.printStackTrace(); // 서버 로그에 스택 트레이스 출력
+            out.println("<pre>"); // 예외 메시지를 HTML에 출력
+            e.printStackTrace(new java.io.PrintWriter(out));
+            out.println("</pre>");
         } finally {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException ignore) {}
             if (conn != null) try { conn.close(); } catch (SQLException ignore) {}

@@ -13,7 +13,13 @@
 
 <div class="container">
     <%
-        int postId = Integer.parseInt(request.getParameter("postId"));
+        String postIdStr = request.getParameter("postId");
+        if (postIdStr == null || postIdStr.isEmpty()) {
+            out.println("<p>유효하지 않은 요청입니다. postId가 없습니다.</p>");
+            return;
+        }
+
+        int postId = Integer.parseInt(postIdStr);
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;

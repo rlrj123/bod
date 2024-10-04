@@ -88,7 +88,7 @@ h2 {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #FFE7F0; /* 각 항목마다 색 */
+    background-color: #FFFFFF; /* 각 항목마다 색 */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -134,7 +134,7 @@ h2 {
 
 /* 검색 기능 스타일 */
 .search-bar {
-    margin-left: auto;
+    margin-left: 8%;
 }
 
 .search-bar input[type="text"] {
